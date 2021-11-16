@@ -2,7 +2,7 @@ from Domain.rezervare import creeaza_rezervare, get_id, get_nume, get_clasa, get
 
 
 def test_rezervare():
-    rezervare = creeaza_rezervare("1" , "Pop" , "economy", 30 , "da")
+    rezervare = creeaza_rezervare("1", "Pop", "economy", 30, "da")
 
     assert get_id(rezervare) == "1"
     assert get_nume(rezervare) == "Pop"

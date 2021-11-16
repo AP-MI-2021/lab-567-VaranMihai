@@ -4,7 +4,7 @@ from Logic.functionalitati import trecere_la_alta_clasa, ieftinire_pret, pret_ma
     ordonare_desc_dupa_pret, suma_pret_pentru_nume
 
 
-def print_Menu():
+def print_menu():
     print("1. Adaugare rezervare")
     print("2. Stergere rezervare")
     print("3. Modificare rezervare")
@@ -26,7 +26,6 @@ def ui_adaugare_rezervare(lista, undo_list, redo_list):
         clasa = input("Dati clasa: ")
         pret = float(input("Dati pretul: "))
         chekin = input("Dati chekin: ")
-
 
         rezultat = adauga_rezervare(id, nume, clasa, pret, chekin, lista)
         undo_list.append(lista)
@@ -105,11 +104,11 @@ def ui_suma_pret_pentru_nume(lista):
         print("Numele {} are suma preturilor {}".format(nume, rezultat[nume]))
 
 
-def run_Menu(lista):
+def run_menu(lista):
     undo_list = []
     redo_list = []
     while True:
-        print_Menu()
+        print_menu()
         optiune = input("Dati optiunea: ")
 
         if optiune == "1":

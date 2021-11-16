@@ -2,12 +2,12 @@ from Domain.rezervare import get_nume, creeaza_rezervare, get_id, get_pret, get_
 
 
 def trecere_la_alta_clasa(string_nume, lista):
-    '''
+    """
     Trece toate rezervariile facute pe un nume dat la o clasa superioara
     :param string_nume: Numele dat
     :param lista: lista de rezervari
     :return: lista de rezervari cu rezervariile modificate
-    '''
+    """
     if str(string_nume) is False:
         raise ValueError("Numele este scris gresit!")
     lista_noua = []
@@ -40,13 +40,14 @@ def trecere_la_alta_clasa(string_nume, lista):
             lista_noua.append(rezervare)
     return lista_noua
 
+
 def ieftinire_pret(procentaj, lista):
-    '''
+    """
     Reduce pretul rezervariilor unde s-a facut checkin cu un procentaj dat
     :param procentaj: procentajul cu care se reduce pretul rezervarii
     :param lista: lista de rezervari
     :return: lista noua cu pretul rezervariilor redus
-    '''
+    """
     if procentaj < 0:
         raise ValueError("Procentajul nu poate fi negativ!")
     lista_noua = []
@@ -67,11 +68,11 @@ def ieftinire_pret(procentaj, lista):
 
 
 def pret_maxim_pentru_clase(lista):
-    '''
+    """
     Determina pretul maxim pentru fiecare clasa dintr-o lista
     :param lista: lista de rezervari
     :return: pretul maxim pentru fiecare clasa a rezervariilor din lista
-    '''
+    """
     rezultat = {}
     for rezervare in lista:
         clasa = get_clasa(rezervare)
@@ -85,20 +86,20 @@ def pret_maxim_pentru_clase(lista):
 
 
 def ordonare_desc_dupa_pret(lista):
-    '''
+    """
     Ordoneaza descrescator rezervariile dintr-o lista dupa pret
     :param lista: lista de rezervari
     :return: lista de rezervari ordonata descrescator dupa pretul rezervariilor
-    '''
+    """
     return sorted(lista, key=lambda rezervare: get_pret(rezervare), reverse=True)
 
 
 def suma_pret_pentru_nume(lista):
-    '''
+    """
     Afiseaza sumele preturilor dupa fiecare nume dintr-o lista
     :param lista: lista de rezervari
     :return: sumele preturilor pentru fiecare nume din lista
-    '''
+    """
     rezultat = {}
     for rezervare in lista:
         nume = get_nume(rezervare)

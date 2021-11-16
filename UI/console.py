@@ -19,6 +19,13 @@ def print_menu():
     print("x. Iesire")
 
 
+def command_line_console():
+    print("1. add")
+    print("2. delete")
+    print("a. showall")
+    print("x. Iesire")
+
+
 def ui_adaugare_rezervare(lista, undo_list, redo_list):
     try:
         id = input("Dati id-ul: ")
@@ -107,41 +114,60 @@ def ui_suma_pret_pentru_nume(lista):
 def run_menu(lista):
     undo_list = []
     redo_list = []
-    while True:
-        print_menu()
-        optiune = input("Dati optiunea: ")
+    print("Interfata veche: 1 ; Interfata noua: 2")
+    interfata = input("Dati interfata: ")
+    if interfata == "1":
+        while True:
+            print_menu()
+            optiune = input("Dati optiunea: ")
 
-        if optiune == "1":
-            lista = ui_adaugare_rezervare(lista, undo_list, redo_list)
-        elif optiune == "2":
-            lista = ui_stergere_rezervare(lista, undo_list, redo_list)
-        elif optiune == "3":
-            lista = ui_modificare_rezervare(lista, undo_list, redo_list)
-        elif optiune == "4":
-            lista = ui_trecerea_la_clasa_superioara(lista)
-        elif optiune == "5":
-            lista = ui_ieftinire_rezervari(lista)
-        elif optiune == "6":
-            ui_pret_maxim_pentru_clase(lista)
-        elif optiune == "7":
-            ui_ordonare_desc_dupa_pret(lista)
-        elif optiune == "8":
-            ui_suma_pret_pentru_nume(lista)
-        elif optiune == "u":
-            if len(undo_list) > 0:
-                redo_list.append(lista)
-                lista = undo_list.pop()
+            if optiune == "1":
+                lista = ui_adaugare_rezervare(lista, undo_list, redo_list)
+            elif optiune == "2":
+                lista = ui_stergere_rezervare(lista, undo_list, redo_list)
+            elif optiune == "3":
+                lista = ui_modificare_rezervare(lista, undo_list, redo_list)
+            elif optiune == "4":
+                lista = ui_trecerea_la_clasa_superioara(lista)
+            elif optiune == "5":
+                lista = ui_ieftinire_rezervari(lista)
+            elif optiune == "6":
+                ui_pret_maxim_pentru_clase(lista)
+            elif optiune == "7":
+                ui_ordonare_desc_dupa_pret(lista)
+            elif optiune == "8":
+                ui_suma_pret_pentru_nume(lista)
+            elif optiune == "u":
+                if len(undo_list) > 0:
+                    redo_list.append(lista)
+                    lista = undo_list.pop()
+                else:
+                    print("Nu se poate face undo!")
+            elif optiune == "r":
+                if len(redo_list) > 0:
+                    undo_list.append(lista)
+                    lista = redo_list.pop()
+                else:
+                    print("Nu se poate face redo!")
+            elif optiune == "a":
+                show_all(lista)
+            elif optiune == "x":
+                break
             else:
-                print("Nu se poate face undo!")
-        elif optiune == "r":
-            if len(redo_list) > 0:
-                undo_list.append(lista)
-                lista = redo_list.pop()
+                print("Reincercati!")
+    elif interfata == "2":
+        while True:
+            command_line_console()
+            optiune = input("Dati optiunea: ")
+
+            if optiune == "1":
+                lista = ui_adaugare_rezervare(lista, undo_list, redo_list)
+            elif optiune == "2":
+                lista = ui_stergere_rezervare(lista, undo_list, redo_list)
+            elif optiune == "a":
+                show_all(lista)
+            elif optiune == "x":
+                break
             else:
-                print("Nu se poate face redo!")
-        elif optiune == "a":
-            show_all(lista)
-        elif optiune == "x":
-            break
-        else:
-            print("Reincercati!")
+                print("Reincercati!")
+

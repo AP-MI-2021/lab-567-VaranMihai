@@ -19,12 +19,6 @@ def print_menu():
     print("x. Iesire")
 
 
-def command_line_console():
-    print("1. add")
-    print("2. delete")
-    print("a. showall")
-    print("x. Iesire")
-
 
 def ui_adaugare_rezervare(lista, undo_list, redo_list):
     try:
@@ -41,6 +35,50 @@ def ui_adaugare_rezervare(lista, undo_list, redo_list):
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
+
+
+def command_line_console(cl):
+    try:
+        liss = input()
+        comenzi = ['add', 'showall', 'delete']
+        rezultatnou = []
+        '''
+        id = input("Dati id-ul: ")
+        nume = input("Dati numele: ")
+        clasa = input("Dati clasa: ")
+        pret = float(input("Dati pretul: "))
+        chekin = input("Dati chekin: ")
+        '''
+        rezz = liss.split(";")
+        for x in rezz:
+            for y in x.split(','):
+                if y == comenzi[0]:
+                    rezultatnou = x.split(',')
+                    id = rezultatnou[1]
+                    nume = rezultatnou[2]
+                    clasa = rezultatnou[3]
+                    pret = rezultatnou[4]
+                    chekin = rezultatnou[5]
+                    rezultat = adauga_rezervare(id, nume, clasa, pret, chekin, cl)
+
+                    cl = rezultat
+
+                elif y == comenzi[1]:
+                    print()
+                    show_all(cl)
+                elif y == comenzi[2]:
+                    rezultatnou = x.split(',')
+                    id = rezultatnou[1]
+                    rezultat = stergere_rezervare(id, cl)
+
+                    cl = rezultat
+
+                else:
+                    break
+
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return cl
 
 
 def ui_stergere_rezervare(lista, undo_list, redo_list):
@@ -111,7 +149,7 @@ def ui_suma_pret_pentru_nume(lista):
         print("Numele {} are suma preturilor {}".format(nume, rezultat[nume]))
 
 
-def run_menu(lista):
+def run_menu(lista, cl):
     undo_list = []
     redo_list = []
     print("Interfata veche: 1 ; Interfata noua: 2")
@@ -157,17 +195,6 @@ def run_menu(lista):
                 print("Reincercati!")
     elif interfata == "2":
         while True:
-            command_line_console()
-            optiune = input("Dati optiunea: ")
+            command_line_console(cl)
 
-            if optiune == "1":
-                lista = ui_adaugare_rezervare(lista, undo_list, redo_list)
-            elif optiune == "2":
-                lista = ui_stergere_rezervare(lista, undo_list, redo_list)
-            elif optiune == "a":
-                show_all(lista)
-            elif optiune == "x":
-                break
-            else:
-                print("Reincercati!")
 

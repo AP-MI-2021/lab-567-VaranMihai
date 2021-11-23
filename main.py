@@ -6,10 +6,14 @@ from UI.console import run_menu
 def main():
     run_all_tests()
     lista = []
+    cl = []
     lista = adauga_rezervare("1", "Pop", "economy", 30, "nu", [])
     lista = adauga_rezervare("2", "Dan", "buisness", 40, "da", lista)
     lista = adauga_rezervare("3", "Dan", "economy plus", 35, "da", lista)
-    run_menu(lista)
+
+    cl = adauga_rezervare("2", "Dan", "buisness", 40, "da", cl)
+
+    run_menu(lista, cl)
 
 
 main()
